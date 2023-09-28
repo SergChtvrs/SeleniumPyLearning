@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 
 def pytest_addoption(parser):
     parser.addoption('--language', action='store', default=None,
-                     help="Choose language: en, fr or something else")
+                     help="Choose language: en, fr or something else (only European languages)")
 
 @pytest.fixture(scope="function")
 def browser(request):
@@ -19,7 +19,7 @@ def browser(request):
         browser = webdriver.Chrome(options=options)
         browser.implicitly_wait(5)
     else:
-        raise pytest.UsageError("please choose a language, for example: --language=jp")
+        raise pytest.UsageError("please choose a language, for example: --language=es (only European languages)")
     yield browser
     print("\nquit browser..")
     browser.quit()
